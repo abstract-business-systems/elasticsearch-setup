@@ -1,0 +1,39 @@
+{
+    "products": [
+        {
+          "product_id": "Gorgeous Fresh Sausages",
+          "name": "Small Rubber Salad",
+          "description": "563.00",
+          "price": "885.00",
+          "category": "Shoes"
+        },
+        {
+          "product_id": "Luxurious Soft Soap",
+          "name": "Incredible Wooden Bacon",
+          "description": "977.00",
+          "price": "358.00",
+          "category": "Sports"
+        },
+        {
+          "product_id": "Ergonomic Steel Hat",
+          "name": "Oriental Metal Keyboard",
+          "description": "318.00",
+          "price": "606.00",
+          "category": "Books"
+        },
+        {
+          "product_id": "Luxurious Cotton Chicken",
+          "name": "Sleek Frozen Soap",
+          "description": "54.00",
+          "price": "633.00",
+          "category": "Baby"
+        },
+        {
+          "product_id": "Electronic Rubber Chair",
+          "name": "Sleek Concrete Mouse",
+          "description": "825.00",
+          "price": "233.00",
+          "category": "Automotive"
+        }
+      ]
+}
