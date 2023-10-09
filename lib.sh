@@ -3,7 +3,6 @@
 executeUntillSucceeds() {
     while true; do
         "$@"
-        echo "$@"
         
         if [ $? -eq 0 ]; then
             echo "Command succeeded"
