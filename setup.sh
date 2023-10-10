@@ -4,7 +4,7 @@ cd $(dirname "$0")
 source ./lib.sh
 
 populateDataToDb() {
-    node postDataToDB.js
+    node ./sequelize/postDataToDB.js
 }
 haltExistingContainers() {
     docker stop es01 && docker rm es01

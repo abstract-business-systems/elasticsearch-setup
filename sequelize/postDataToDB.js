@@ -1,20 +1,19 @@
 require('dotenv').config();
 const { Sequelize } = require("sequelize");
 const { DataTypes } = require("sequelize");
-const products = require("./es/products");
-const { mapAsync } = require("./utils");
+const products = require("../es/products");
+const { mapAsync } = require("../utils");
 const { init, createProduct } = require("./sequelizeManager");
 
 const productSchema = {
-  // Define your fields here
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   product_id: {
-    type: DataTypes.STRING, // Assuming "product_id" is a string
-    unique: true, // Assuming it should be unique
+    type: DataTypes.STRING,
+    unique: true,
     allowNull: false,
   },
   name: {
@@ -26,7 +25,7 @@ const productSchema = {
     allowNull: false,
   },
   price: {
-    type: DataTypes.DECIMAL(10, 2), // Assuming "price" is a decimal with 2 decimal places
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
   category: {

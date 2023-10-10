@@ -1,4 +1,4 @@
-const { mapAsync } = require("./utils");
+const { mapAsync } = require("../utils");
 
 module.exports = {
     init: async (sequelize) => {
