@@ -1,38 +1,7 @@
-require('dotenv').config();
 const { Sequelize } = require("sequelize");
-const { DataTypes } = require("sequelize");
-const products = require("../es/products");
 const { mapAsync } = require("../utils");
 const { init, createProduct } = require("./sequelizeManager");
-
-const productSchema = {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  product_id: {
-    type: DataTypes.STRING,
-    unique: true,
-    allowNull: false,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  price: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
-  },
-  category: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-};
+const config = require('../core/config');
 
 const main = async (dbConfig) => {
   await mapAsync(dbConfig, async (config) => {
@@ -51,31 +20,4 @@ const main = async (dbConfig) => {
   });
 };
 
-main([
-  {
-    db: "elasticsearch",
-    userName: process.env.MYSQL_USERNAME,
-    password: process.env.MYSQL_PASSWORD,
-    setup: {
-      host: "localhost",
-      dialect: "mysql",
-      port: 3306,
-    },
-    tableName: "product",
-    schema: productSchema,
-    initialData: products,
-  },
-  {
-    db: "elasticsearch",
-    userName: process.env.POSTGRES_USERNAME,
-    password: process.env.POSTGRES_PASSWORD,
-    setup: {
-      host: "localhost",
-      dialect: "postgres",
-      port: 5432,
-    },
-    tableName: "product",
-    schema: productSchema,
-    initialData: products,
-  },
-]);
+main(config);
