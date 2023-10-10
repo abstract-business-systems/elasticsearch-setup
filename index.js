@@ -1,4 +1,4 @@
-const schema = require('./es/schemaschema');
+const schema = require('./es/schema');
 const { connectToEs, createIndex, bulkUpdate } = require('./es/esManageresManager');
 
 const main = async (context) => {
