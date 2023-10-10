@@ -4,7 +4,7 @@ cd $(dirname "$0")
 source ./lib.sh
 
 populateDataToDb() {
-    node postData.js
+    node postDataToDB.js
 }
 haltExistingContainers() {
     docker stop es01 && docker rm es01
