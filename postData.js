@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { Sequelize } = require("sequelize");
 const { DataTypes } = require("sequelize");
 const products = require("./products");
@@ -54,8 +55,8 @@ const main = async (dbConfig) => {
 main([
   {
     db: "elasticsearch",
-    userName: "username",
-    password: "password",
+    userName: process.env.MYSQL_USERNAME,
+    password: process.env.MYSQL_PASSWORD,
     setup: {
       host: "localhost",
       dialect: "mysql",
@@ -67,8 +68,8 @@ main([
   },
   {
     db: "elasticsearch",
-    userName: "root",
-    password: "root",
+    userName: process.env.POSTGRES_USERNAME,
+    password: process.env.POSTGRES_PASSWORD,
     setup: {
       host: "localhost",
       dialect: "postgres",
