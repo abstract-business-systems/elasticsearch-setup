@@ -39,10 +39,7 @@ const createIndex = async ({ client, schema }) => {
   });
 };
 
-const connectToEs = (url) =>
-  new Client({
-    node: url,
-  });
+const connectToEs = (url) => new Client({ node: url });
 
 const deleteIndex = async ({ client, indexName }) => {
   try {
@@ -54,9 +51,24 @@ const deleteIndex = async ({ client, indexName }) => {
   }
 };
 
+const searchData = async ({ client, body }) => {
+  try {
+    const response = await client.search({
+      index: "productsmyql", // Replace with your index name
+      body: body,
+    });
+
+    const documents = response.hits.hits;
+    console.log(documents);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   bulkUpdate,
   createIndex,
   connectToEs,
   deleteIndex,
+  searchData,
 };
