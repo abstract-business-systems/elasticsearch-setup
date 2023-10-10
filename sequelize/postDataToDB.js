@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 const { mapAsync } = require("../utils");
-const { init, createProduct } = require("./sequelizeManager");
+const { init, insertRecords } = require("./sequelizeManager");
 const config = require('../core/config');
 
 const main = async (dbConfig) => {
@@ -16,7 +16,7 @@ const main = async (dbConfig) => {
 
     const Table = sequelize.define(tableName, schema);
     await init(sequelize);
-    await createProduct(Table, initialData);
+    await insertRecords(Table, initialData);
   });
 };
 

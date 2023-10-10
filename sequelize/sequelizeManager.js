@@ -12,11 +12,10 @@ module.exports = {
           console.error('Unable to connect to the database:', error);
         }
     },
-    createProduct: async (Product, products) => {
+    insertRecords: async (Table, records) => {
       try {
-        await mapAsync(products, async (product) => {
-            const newProduct = await Product.create(product);
-            console.log('Product created:', newProduct.toJSON());
+        await mapAsync(records, async (record) => {
+            const newProduct = await Table.create(record);
         })
       } catch (error) {
         console.error('Error creating Product:', error);
