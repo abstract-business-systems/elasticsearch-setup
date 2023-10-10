@@ -1,0 +1,41 @@
+input {
+  jdbc {
+    jdbc_driver_library => "/usr/share/logstash/vendor/jdbc/mysql.jar"
+    jdbc_driver_class => "com.mysql.jdbc.Driver"
+    jdbc_connection_string => "jdbc:mysql://localhost:3306/elasticsearch"
+    jdbc_user => "${MYSQL_USERNAME}"
+    jdbc_password => "${MYSQL_PASSWORD}"
+    statement => "SELECT * FROM products;"
+    type => "mysql"
+  }
+}
+
+output {
+   elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "productsmyql"
+  }
+  stdout {
+    codec => rubydebug
+  }
+}
+
+
+input {
+  jdbc {
+    jdbc_driver_library => "/usr/share/logstash/vendor/jdbc/postgresql.jar"
+    jdbc_driver_class => "org.postgresql.Driver"
+    jdbc_connection_string => "jdbc:postgresql://localhost:5432/elasticsearch"
+    jdbc_user => "${POSTGRES_USERNAME}"
+    jdbc_password => "${POSTGRES_PASSWORD}"
+    statement => "SELECT * FROM products"
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "productss"
+  }
+}
+
