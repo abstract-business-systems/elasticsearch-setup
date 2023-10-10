@@ -9,7 +9,7 @@
     "generate-products": "node ./es/generateProducts.js > ./es/products.json"
   },
   "keywords": [],
-  "author": "",
+  "author": "abs",
   "license": "ISC",
   "dependencies": {
     "@elastic/elasticsearch": "^8.9.0",
