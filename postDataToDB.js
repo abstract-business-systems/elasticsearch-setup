@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Sequelize } = require("sequelize");
 const { DataTypes } = require("sequelize");
-const products = require("./products");
+const products = require("./es/products");
 const { mapAsync } = require("./utils");
 const { init, createProduct } = require("./sequelizeManager");
 

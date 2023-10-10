@@ -1,5 +1,5 @@
 const { Client } = require("@elastic/elasticsearch");
-const { mapAsync } = require("./utils");
+const { mapAsync } = require("../utils");
 const products = require("./products.json");
 
 const bulkUpdate = async ({ client }) => {

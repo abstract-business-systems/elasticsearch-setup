@@ -1,5 +1,5 @@
-const schema = require('./schema');
-const { connectToEs, createIndex, bulkUpdate } = require('./esManager');
+const schema = require('./es/schemaschema');
+const { connectToEs, createIndex, bulkUpdate } = require('./es/esManageresManager');
 
 const main = async (context) => {
   const client = await connectToEs('http://localhost:9200');
