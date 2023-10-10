@@ -1,0 +1,1 @@
+{ "transient": { "cluster.routing.allocation.disk.watermark.low": "10gb", "cluster.routing.allocation.disk.watermark.high": "7gb", "cluster.routing.allocation.disk.watermark.flood_stage": "2gb" } }
