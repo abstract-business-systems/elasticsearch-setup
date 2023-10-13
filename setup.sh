@@ -6,7 +6,7 @@ source ./.env
 
 setupMysql() {
     docker pull mysql/mysql-server
-    docker run --network host --name=mysql1 --env-file ./.env -d mysql/mysql-server
+    docker run --network host --name=mysql1 --env-file ./.env -p $MYSQL_PORT:$MYSQL_PORT -d mysql/mysql-server
     while true; do        
         if [ $(docker inspect --format '{{.State.Health.Status}}' mysql1) = 'healthy' ]; then
             echo "mysql is healthy"
@@ -19,7 +19,7 @@ setupMysql() {
 }
 
 setupPostgres() {
-    docker run --name psql --env-file ./.env -p 5431:5432 -d postgres
+    docker run --name psql --env-file ./.env -p $POSTGRES_PORT:$POSTGRES_PORT -d postgres
     sleep 5
 }
 

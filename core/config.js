@@ -10,7 +10,7 @@ module.exports = [
     setup: {
       host: "localhost",
       dialect: "mysql",
-      port: 3306,
+      port: process.env.MYSQL_PORT,
     },
     tableName: "product",
     schema: productSchema,
@@ -23,7 +23,7 @@ module.exports = [
     setup: {
       host: "localhost",
       dialect: "postgres",
-      port: 5431,
+      port: process.env.POSTGRES_PORT,
     },
     tableName: "product",
     schema: productSchema,
