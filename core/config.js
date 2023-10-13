@@ -5,7 +5,7 @@ const products = require('../es/products.json')
 module.exports = [
   {
     db: "elasticsearch",
-    userName: process.env.MYSQL_USERNAME,
+    userName: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     setup: {
       host: "localhost",
@@ -18,12 +18,12 @@ module.exports = [
   },
   {
     db: "elasticsearch",
-    userName: process.env.POSTGRES_USERNAME,
+    userName: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     setup: {
       host: "localhost",
       dialect: "postgres",
-      port: 5432,
+      port: 5431,
     },
     tableName: "product",
     schema: productSchema,
