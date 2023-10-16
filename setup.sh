@@ -4,6 +4,13 @@ cd $(dirname "$0")
 source ./lib.sh
 source ./.env
 
+stopExistingContainers() {
+    docker stop es01 && docker rm es01
+    docker stop log-rdbms && docker rm log-rdbms
+    docker stop mysql1 && docker rm mysql1
+    docker stop psql && docker rm psql
+}
+
 setupMysql() {
     docker pull mysql/mysql-server
     docker run --network host --name=mysql1 --env-file ./.env -p $MYSQL_PORT:$MYSQL_PORT -d mysql/mysql-server
@@ -27,17 +34,10 @@ populateDataToDb() {
     node ./sequelize/postDataToDB.js
 }
 
-stopExistingContainers() {
-    docker stop es01 && docker rm es01
-    docker stop log-rdbms && docker rm log-rdbms
-    docker stop mysql1 && docker rm mysql1
-    docker stop psql && docker rm psql
-}
-
 setupElasticSearch() {
-    docker run -u root -v ./storage/tmp:/bitnami/elasticsearch/storage/data:rw --name es01 --network host -d bitnami/elasticsearch:latest
+    docker run -u root -v ./storage/one:/bitnami/elasticsearch/storage/data:rw --name es01 -p $ELASTICSEARCH_PORT:$ELASTICSEARCH_PORT -d bitnami/elasticsearch:latest
     fileContent=$(cat ./es/esStorageConfig.json)
-    executeUntillSucceeds curl -X PUT localhost:9200/_cluster/settings?pretty -H "Content-Type: application/json" -d "$fileContent"
+    executeUntillSucceeds curl -X PUT localhost:"$ELASTICSEARCH_PORT"/_cluster/settings?pretty -H "Content-Type: application/json" -d "$fileContent"
 }
 
 setupLogstash(){

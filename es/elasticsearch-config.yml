@@ -12,14 +12,13 @@ input {
 
 output {
    elasticsearch {
-    hosts => ["http://localhost:9200"]
+    hosts => ["http://localhost:${ELASTICSEARCH_PORT}"]
     index => "productsmyql"
   }
   stdout {
     codec => rubydebug
   }
 }
-
 
 input {
   jdbc {
@@ -34,7 +33,7 @@ input {
 
 output {
   elasticsearch {
-    hosts => ["http://localhost:9200"]
+    hosts => ["http://localhost:${ELASTICSEARCH_PORT}"]
     index => "productss"
   }
 }
