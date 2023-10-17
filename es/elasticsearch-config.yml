@@ -2,7 +2,7 @@ input {
   jdbc {
     jdbc_driver_library => "/usr/share/logstash/vendor/jdbc/mysql.jar"
     jdbc_driver_class => "com.mysql.jdbc.Driver"
-    jdbc_connection_string => "jdbc:mysql://localhost:3306/elasticsearch"
+    jdbc_connection_string => "jdbc:mysql://localhost:${MYSQL_PORT}/${MYSQL_DATABASE}"
     jdbc_user => "${MYSQL_USER}"
     jdbc_password => "${MYSQL_PASSWORD}"
     statement => "SELECT * FROM products;"
@@ -24,7 +24,7 @@ input {
   jdbc {
     jdbc_driver_library => "/usr/share/logstash/vendor/jdbc/postgresql.jar"
     jdbc_driver_class => "org.postgresql.Driver"
-    jdbc_connection_string => "jdbc:postgresql://localhost:5432/elasticsearch"
+    jdbc_connection_string => "jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DB}"
     jdbc_user => "${POSTGRES_USER}"
     jdbc_password => "${POSTGRES_PASSWORD}"
     statement => "SELECT * FROM products"
