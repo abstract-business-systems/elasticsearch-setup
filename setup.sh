@@ -42,6 +42,7 @@ setupElasticSearch() {
 
 setupLogstash(){
     docker run --env-file ./.env --name $LOGSTASH_CONTAINER --network host -v ./es/elasticsearch-config.yml:/usr/share/logstash/pipeline/logstash.conf -d log-rdbms
+    sleep 5
 }
 
 stopExistingContainers
