@@ -11,10 +11,10 @@ stopExistingContainers() {
     docker stop $POSTGRES_CONTAINER && docker rm $POSTGRES_CONTAINER
 }
 
-setupMysql() {
+setupMySQL() {
     docker pull mysql/mysql-server
     docker run --name=$MYSQL_CONTAINER --env-file ./.env -p $MYSQL_PORT:3306 -d mysql/mysql-server
-    while true; do        
+    while true; do
         if [ $(docker inspect --format '{{.State.Health.Status}}' $MYSQL_CONTAINER) = 'healthy' ]; then
             echo "mysql is healthy"
             break
@@ -30,7 +30,7 @@ setupPostgres() {
     sleep 5
 }
 
-populateDataToDb() {
+populateDataToDB() {
     node ./sequelize/postDataToDB.js
 }
 
@@ -46,8 +46,8 @@ setupLogstash(){
 }
 
 stopExistingContainers
-setupMysql
+setupMySQL
 setupPostgres
-populateDataToDb
+populateDataToDB
 setupElasticSearch
 setupLogstash
