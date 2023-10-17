@@ -1,3 +1,22 @@
-node_modules
+# Ignores
+## General
 .*
-!.gitignore
+*.tgz
+
+## Stack
+/node_modules
+/coverage
+
+# Excludes
+## General
+!.git*
+!.npmignore
+
+## Dev
+!.editorconfig
+!.eslint*
+!.vscode
+.vscode/*
+!.vscode/launch.json
+/dist
+/src/lib
