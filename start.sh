@@ -30,6 +30,10 @@ setupPostgres() {
     sleep 5
 }
 
+generateProducts() {
+	pnpm run generate-products
+}
+
 populateDataToDB() {
     node ./sequelize/postDataToDB.js
 }
@@ -48,6 +52,7 @@ setupLogstash(){
 stopExistingContainers
 setupMySQL
 setupPostgres
+generateProducts
 populateDataToDB
 setupElasticSearch
 setupLogstash
