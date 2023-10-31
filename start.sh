@@ -9,6 +9,7 @@ stopExistingContainers() {
     docker stop $LOGSTASH_CONTAINER && docker rm $LOGSTASH_CONTAINER
     docker stop $MYSQL_CONTAINER && docker rm $MYSQL_CONTAINER
     docker stop $POSTGRES_CONTAINER && docker rm $POSTGRES_CONTAINER
+	docker stop $KIBANA_CONTAINER && docker rm $KIBANA_CONTAINER
 }
 
 setupMySQL() {
@@ -39,7 +40,7 @@ populateDataToDB() {
 }
 
 setupElasticSearch() {
-    docker run -u root -v ./storage/one:/bitnami/elasticsearch/storage/data:rw --name $ELASTICSEARCH_CONTAINER -p $ELASTICSEARCH_PORT:9200 -d bitnami/elasticsearch:latest
+    docker run -u root -v ./.dist:/bitnami/elasticsearch/storage/data:rw --name $ELASTICSEARCH_CONTAINER -p $ELASTICSEARCH_PORT:9200 -d bitnami/elasticsearch:latest
     fileContent=$(cat ./es/esStorageConfig.json)
     executeUntillSucceeds curl -X PUT localhost:"$ELASTICSEARCH_PORT"/_cluster/settings?pretty -H "Content-Type: application/json" -d "$fileContent"
 }
@@ -49,6 +50,10 @@ setupLogstash(){
     sleep 5
 }
 
+setupKibana() {
+	docker run -d --name $KIBANA_CONTAINER  -p $KIBANA_PORT:5601 docker.elastic.co/kibana/kibana:8.10.4
+}
+
 stopExistingContainers
 setupMySQL
 setupPostgres
@@ -56,3 +61,4 @@ generateProducts
 populateDataToDB
 setupElasticSearch
 setupLogstash
+setupKibana
