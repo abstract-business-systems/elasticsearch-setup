@@ -4,7 +4,7 @@ const products = require('../es/products.json');
 
 module.exports = [
 	{
-		db: 'elasticsearch',
+		db: process.env.MYSQL_DATABASE,
 		userName: process.env.MYSQL_USER,
 		password: process.env.MYSQL_PASSWORD,
 		setup: {
@@ -17,7 +17,7 @@ module.exports = [
 		initialData: products,
 	},
 	{
-		db: 'elasticsearch',
+		db: process.env.POSTGRES_DB,
 		userName: process.env.POSTGRES_USER,
 		password: process.env.POSTGRES_PASSWORD,
 		setup: {
