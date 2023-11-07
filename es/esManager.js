@@ -2,7 +2,7 @@
 const { Client } = require('@elastic/elasticsearch');
 const { mapAsync } = require('../utils');
 const products = require('./products.json');
-const peek = require('@laufire/utils/debug');
+const { peek } = require('@laufire/utils/debug');
 
 const bulkUpdate = async ({ client }) => {
 	try {
@@ -23,7 +23,7 @@ const createIndex = async ({ client, schema }) => {
 	await mapAsync(schema, async (props, indexName) => {
 		try {
 			const response = await client.indices.create({
-				index: indexName,
+				index: 'dummy',
 				body: {
 					settings: {
 						number_of_shards: 1,
@@ -61,7 +61,7 @@ const deleteIndex = async ({ client, indexName }) => {
 const searchData = async ({ client, body }) => {
 	try {
 		const response = await client.search({
-			index: 'postgresproducts',
+			index: 'dummy',
 			body: body,
 		});
 
