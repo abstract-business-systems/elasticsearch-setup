@@ -40,7 +40,7 @@ populateDataToDB() {
 }
 
 setupElasticSearch() {
-    docker run -u root -v ./.dist:/bitnami/elasticsearch/storage/data:rw --name $ELASTICSEARCH_CONTAINER -p $ELASTICSEARCH_PORT:9200 -d bitnami/elasticsearch:latest
+    docker run -u root -v /shared/dev/storage/es:/bitnami/elasticsearch/storage/data:rw --name $ELASTICSEARCH_CONTAINER -p $ELASTICSEARCH_PORT:9200 -d bitnami/elasticsearch:latest
     fileContent=$(cat ./es/esStorageConfig.json)
     executeUntillSucceeds curl -X PUT localhost:"$ELASTICSEARCH_PORT"/_cluster/settings?pretty -H "Content-Type: application/json" -d "$fileContent"
 }
